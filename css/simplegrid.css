@@ -6,14 +6,13 @@
 */
 
 body {font-family: 'Roboto', sans-serif; text-align: center;}
-.title {font-weight: bolder; font-size: xx-large;}
-.chart_title {font-weight: bold; font-size: large;}
-chart_title {font-weight: bold; font-size: large;}
+.title {font-weight: bolder; font-size: xx-large; margin-bottom: 50px;}
+.chart_title {font-weight: bold; font-size: large; height: 60px;}
+.source {font-size: smaller;}
+.footnote {text-align: left; font-size: x-small;}
+subtitle {font-weight: lighter; font-size: smaller;}
 		
 svg {display: block; margin: auto}
-
-</style>
-
 
 [class*='grid'],
 [class*='col-'],

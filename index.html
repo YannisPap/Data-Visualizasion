@@ -27,7 +27,7 @@
 												
 						barChart.addMeasureAxis("y", "Delays (%)");
 						var s = barChart.addSeries('Cause', dimple.plot.bar);
-						barChart.addLegend(60, 10, 510, 60, "center");
+						barChart.addLegend(60, 05, 510, 60, "center");
 						
 						s.addEventHandler("click", function(e) {
 							filtered = dimple.filterData(causes, "Airport", e.xValue);
@@ -45,7 +45,7 @@
 						x.addOrderRule("Year");
 						areaChart.addMeasureAxis("y", "Delays (%)");
 						var j = areaChart.addSeries("Cause", dimple.plot.area);
-						areaChart.addLegend(60, 10, 410, 60, "right");
+						areaChart.addLegend(60, 05, 510, 60, "right");
 						areaChart.draw();
 					})
 				})
@@ -60,19 +60,13 @@
 					Delays across major US airports
 				</div>
 			</div>
-			<div class="col-1-1">
-				<div class="title">
-					<br />
-				</div>
-			</div>
 			<div class="col-1-2">
 				<div class="col-1-1">
-					<div class="content">
-						<chart_title>
-							Average delays for the period June 2003 - February 2017
-							<br />
-						</chart_title>
-						(Select an airport to see delays over time)
+					<div class="chart_title">
+						Average delays for the period June 2003 - February 2017<br />
+						<subtitle>
+							(Select an airport to see delays over time)
+						</subtitle>
 					</div>
 				</div>
 				<div class="col-1-1">
@@ -87,14 +81,22 @@
 					</div>
 				</div>
 				<div class="col-1-1">
-					<br />
-				</div>
-				<div class="col-1-1">
 					<div id='area'>
 						<script type="text/javascript">
 							plotDiagrams();
 						</script>
 					</div>
+				</div>
+			</div>
+			<div class="col-1-1">
+				<div class="source" style="margin-bottom: 30px;">
+					Source: United States Department of Transportation / Bureau of Transportation Statistics.
+				</div>
+			</div>
+			<hr>
+			<div class="col-1-1">
+				<div class="footnote">
+					Footnote: NAS = National Aviation System
 				</div>
 			</div>
 		</div>
