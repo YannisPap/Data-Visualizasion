@@ -21,8 +21,8 @@
 				
 				var barSvg = dimple.newSvg("#bar", 590, 400);
 				var areaSvg = dimple.newSvg("#area", 590, 400);
-				d3.csv('total.csv', function(total) {
-					d3.csv('causes.csv', function(causes) {
+				d3.csv('data/total.csv', function(total) {
+					d3.csv('data/causes.csv', function(causes) {
 						//console.log('1');
 						var barChart = new dimple.chart(barSvg, total);
 						barChart.setBounds(60, 30, 510, 305)
