@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<style>
+	body {font-family: 'Roboto', sans-serif; text-align: center;}
+	.title {font-weight: bolder; font-size: xx-large;}
+	.chart_title {font-weight: bold; font-size: large;}
+	chart_title {font-weight: bold; font-size: large;}
+		
+	svg {display: block; margin: auto}
+
+</style>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<script type="text/javascript">
+						
+			function plotDiagrams() {
+				
+				var barSvg = dimple.newSvg("#bar", 590, 400);
+				var areaSvg = dimple.newSvg("#area", 590, 400);
+				d3.csv('total.csv', function(total) {
+					d3.csv('causes.csv', function(causes) {
+						//console.log('1');
+						var barChart = new dimple.chart(barSvg, total);
+						barChart.setBounds(60, 30, 510, 305)
+						var x = barChart.addCategoryAxis("x", "Airport");
+						x.addOrderRule("Airport");
+						barChart.addMeasureAxis("y", "Delays (%)");
+						var s = barChart.addSeries('Cause', dimple.plot.bar);
+						barChart.addLegend(60, 10, 510, 20, "right");
+						
+						s.addEventHandler("click", function(e) {
+							filtered = dimple.filterData(causes, "Airport", e.xValue);
+							areaChart.data = filtered;
+							document.getElementById("airport").innerHTML = e.xValue + " - Delays over time.";
+							areaChart.draw(1000);
+						});
+						
+						barChart.draw();
+						
+						data = causes;
+						var areaChart = new dimple.chart(areaSvg, data);
+						areaChart.setBounds(60, 30, 510, 305);
+						var x = areaChart.addCategoryAxis("x", "Year");
+						x.addOrderRule("Year");
+						areaChart.addMeasureAxis("y", "Delays (%)");
+						var j = areaChart.addSeries("Cause", dimple.plot.area);
+						areaChart.draw();
+					})
+				})
+			};
+								
+		</script>
+	</head>
+	<body>
+		<div class="title">
+			Delays across major US airports
+		</div>
+		<div>
+			<chart_title>
+				Average delays for the period June 2003 - February 2017<br />
+			</chart_title>
+			(Select an airport to see delays over time)
+		</div>
+		<div id='bar'></div>
+		<div id="airport" class="chart_title">
+			ATL - Delays over time.
+		</div>
+		<div id='area'>
+			<script type="text/javascript">
+				plotDiagrams();
+			</script>
+		</div>
+	</body>
+</html>
