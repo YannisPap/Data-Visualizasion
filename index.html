@@ -16,15 +16,18 @@
 				
 				var barSvg = dimple.newSvg("#bar", 590, 400);
 				var areaSvg = dimple.newSvg("#area", 590, 400);
+				
+				//Importing data files
 				d3.csv('data/total.csv', function(total) {
 					d3.csv('data/causes.csv', function(causes) {
-						//console.log('1');
+						
+						//Creating the stacked bar chart
 						var barChart = new dimple.chart(barSvg, total);
 						barChart.setBounds(60, 30, 510, 305)
 						
 						var x = barChart.addCategoryAxis("x", "Airport")
 						x.addOrderRule("Airport")
-												
+															
 						barChart.addMeasureAxis("y", "Delays (%)");
 						var s = barChart.addSeries('Cause', dimple.plot.bar);
 						barChart.addLegend(60, 05, 510, 60, "center");
@@ -38,6 +41,7 @@
 						
 						barChart.draw();
 						
+						//Creating the area chart
 						data = causes;
 						var areaChart = new dimple.chart(areaSvg, data);
 						areaChart.setBounds(60, 30, 510, 305);
@@ -59,6 +63,36 @@
 				<div class="title">
 					Delays across major US airports
 				</div>
+			</div>
+			<div class="col-1-1">
+				<div class="p">
+					You may have a hard time traveling from <b>New York City</b> if it is not your lucky day.<br /> 
+					Data aquired by the United States Department of Transportation for the period June 2003 - February 2017, show that over one out of four flights is delayed across all NYC airports. More specifically:
+				</div>
+				<div class="p">
+					<ul>
+						<li>
+							<b>Newark Liberty International Airport (EWR) </b> has the highest delays percentage (29%) accross all the US airports.
+						</li>
+						<li>
+							<b>LaGuardia Airport (LGA) </b> comes second in national level with 27%.
+						</li>
+						<li>
+							<b>John F. Kennedy International Airport (JFK) </b> comes forth in national level with 24%.
+						</li>
+					</ul>
+				</div>
+				<div class="p">
+					The reason most of the times is the <b>National Aviation System (NAS)</b>. This means that most of the delays are due to a broad set of conditions, such as non-extreme weather conditions, airport operations, heavy traffic volume, and air traffic control. Other frequent reasons are <b>Aircraft Arriving Late</b> and <b>Air Carrier Delay</b>.  You may notice that this is the top reason for the delays in all major US airports.
+				</div>
+				<div>
+					<ul>
+						<li>
+							<b>EWR</b> has the highest delays percentage accross all the US airports.
+						</li>
+					</ul>
+				</div>
+				
 			</div>
 			<div class="col-1-2">
 				<div class="col-1-1">

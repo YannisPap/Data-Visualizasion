@@ -5,12 +5,13 @@
   Site - http://dallasbass.com
 */
 
-body {font-family: 'Roboto', sans-serif; text-align: center;}
-.title {font-weight: bolder; font-size: xx-large; margin-bottom: 50px;}
-.chart_title {font-weight: bold; font-size: large; height: 60px;}
+body {font-family: 'Roboto', sans-serif; margin-bottom: 20px;}
+.title {font-weight: bolder; font-size: xx-large; margin-bottom: 20px; text-align: center;}
+.chart_title {font-weight: bold; font-size: large; height: 60px; text-align: center;}
 .source {font-size: smaller;}
 .footnote {text-align: left; font-size: x-small;}
-subtitle {font-weight: lighter; font-size: smaller;}
+.subtitle {font-weight: lighter; font-size: smaller;}
+.p {font-family: 'Roboto', sans-serif; text-align: justify; margin-bottom: 20px; padding-left: 40px; line-height: 25px;}
 		
 svg {display: block; margin: auto}
 
@@ -27,6 +28,7 @@ svg {display: block; margin: auto}
 	float: left;
   	min-height: 1px;
 	padding-right: 0px; /* column-space */
+/*	text-align: center;*/
 }
 
 [class*='col-'] [class*='col-']:last-child {
