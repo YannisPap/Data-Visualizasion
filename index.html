@@ -28,7 +28,8 @@
 						var x = barChart.addCategoryAxis("x", "Airport")
 						x.addOrderRule("Airport")
 															
-						barChart.addMeasureAxis("y", "Delays (%)");
+						y = barChart.addMeasureAxis("y", "Delays (%)");
+						y.tickFormat = ",.2f";
 						var s = barChart.addSeries('Cause', dimple.plot.bar);
 						barChart.addLegend(60, 05, 510, 60, "center");
 						
@@ -47,7 +48,8 @@
 						areaChart.setBounds(60, 30, 510, 305);
 						var x = areaChart.addCategoryAxis("x", "Year");
 						x.addOrderRule("Year");
-						areaChart.addMeasureAxis("y", "Delays (%)");
+						y = areaChart.addMeasureAxis("y", "Delays (%)");
+						y.tickFormat = ",.2f";
 						var j = areaChart.addSeries("Cause", dimple.plot.area);
 						areaChart.addLegend(60, 05, 510, 60, "right");
 						areaChart.draw();
@@ -85,14 +87,7 @@
 				<div class="p">
 					The reason most of the times is the <b>National Aviation System (NAS)</b>. This means that most of the delays are due to a broad set of conditions, such as non-extreme weather conditions, airport operations, heavy traffic volume, and air traffic control. Other frequent reasons are <b>Aircraft Arriving Late</b> and <b>Air Carrier Delay</b>.  You may notice that this is the top reason for the delays in all major US airports.
 				</div>
-				<div>
-					<ul>
-						<li>
-							<b>EWR</b> has the highest delays percentage accross all the US airports.
-						</li>
-					</ul>
-				</div>
-				
+								
 			</div>
 			<div class="col-1-2">
 				<div class="col-1-1">
