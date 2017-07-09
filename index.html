@@ -43,7 +43,7 @@
 						barChart.draw();
 						
 						//Creating the area chart
-						data = causes;
+						data = dimple.filterData(causes, "Airport", 'ATL');
 						var areaChart = new dimple.chart(areaSvg, data);
 						areaChart.setBounds(60, 30, 510, 305);
 						var x = areaChart.addCategoryAxis("x", "Year");
