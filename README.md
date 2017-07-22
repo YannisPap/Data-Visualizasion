@@ -20,11 +20,25 @@ On the visualization I wanted to compare both the delays across different airpor
 >One thing I noticed, look at SAN airport, there is a green bar but there is 0% extreme weather delays. So either the data is not being calculated correctly, or the plot is not being drawn correctly? This is really a nitpick, because all of the extreme weather data is either 0% or 1%. Also it seems like security delays are 0% across the board, perhaps you can just remove it and add a footnote that there was none or it is such a small amount of the data that it is not worth having. Because it took me a few seconds to see that there was no security delay data, just a tiny slice of yellow at the very top of the bars. Or you could add a table to show those amounts. Again a nitpick... Overall great job! your plots look good and it works well. Good Job!
 
 **Changes**  
+The accuracy of the values in the tooltip increased to 2 decimals.  
+([GitHub Commit](https://github.com/YannisPap/Data-Visualizasion/commit/5e465d59a003028fc4819d1a9deb34d0cafd43c0))
 
-The accuracy of the values in the tooltip increased to 2 decimals.
+## Feedback 2  
 
+**Feedback**  
+>When you load the page, the values on the y axis of the area chart are way beyond 100. Are you sure they are percentages?
 
-- include all feedback you received from others on your visualization from the first sketch to the final visualization
-Resources - list any sources you consulted to create your visualization
+**Changes**  
+When the page was loading there wasn't any airport selected, so the code (without any filter) was summing all the percentages for all causes/airport the presenting a wrong value.  
+I set an initial filter for 'ATL' (the first airport on the list).  
+([GitHub Commit](https://github.com/YannisPap/Data-Visualizasion/commit/2a8429361c2d218a595b1ee9c36daeab6202b610))
 
-https://github.com/PMSI-AlignAlytics/dimple/issues/43
+## Feedback 3  
+
+**Feedback**  
+>It would be nice if on the initial screen you could present the total delays percentage for each year on the area chart. Nice work!
+
+**Changes**  
+I created a new dataset with the delays aggregated over time and changed the code to load it on page load.  
+([GitHub Commit](https://github.com/YannisPap/Data-Visualizasion/commit/e2e30ff2fd54f8bb17fe2cedc268318f371292d7))
+
