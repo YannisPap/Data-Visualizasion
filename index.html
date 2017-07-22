@@ -4,59 +4,63 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<link rel="stylesheet" type="text/css" href="css/simplegrid.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-		
+
 		<script src="https://d3js.org/d3.v4.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.js"></script>
 		<script type="text/javascript">
-						
+
 			function plotDiagrams() {
-				
+
 				var barSvg = dimple.newSvg("#bar", 590, 400);
 				var areaSvg = dimple.newSvg("#area", 590, 400);
-				
+
 				//Importing data files
 				d3.csv('data/total.csv', function(total) {
 					d3.csv('data/causes.csv', function(causes) {
-						
-						//Creating the stacked bar chart
-						var barChart = new dimple.chart(barSvg, total);
-						barChart.setBounds(60, 30, 510, 305)
-						
-						var x = barChart.addCategoryAxis("x", "Airport")
-						x.addOrderRule("Airport")
-															
-						y = barChart.addMeasureAxis("y", "Delays (%)");
-						y.tickFormat = ",.2f";
-						var s = barChart.addSeries('Cause', dimple.plot.bar);
-						barChart.addLegend(60, 05, 510, 60, "center");
-						
-						s.addEventHandler("click", function(e) {
-							filtered = dimple.filterData(causes, "Airport", e.xValue);
-							areaChart.data = filtered;
-							document.getElementById("airport").innerHTML = e.xValue + " - Delays over time.";
-							areaChart.draw(1000);
-						});
-						
-						barChart.draw();
-						
-						//Creating the area chart
-						data = dimple.filterData(causes, "Airport", 'ATL');
-						var areaChart = new dimple.chart(areaSvg, data);
-						areaChart.setBounds(60, 30, 510, 305);
-						var x = areaChart.addCategoryAxis("x", "Year");
-						x.addOrderRule("Year");
-						y = areaChart.addMeasureAxis("y", "Delays (%)");
-						y.tickFormat = ",.2f";
-						var j = areaChart.addSeries("Cause", dimple.plot.area);
-						areaChart.addLegend(60, 05, 510, 60, "right");
-						areaChart.draw();
+						d3.csv('data/by_year.csv', function(by_year) {
+
+							//Creating the stacked bar chart
+							var barChart = new dimple.chart(barSvg, total);
+							barChart.setBounds(60, 30, 510, 305)
+
+							var x = barChart.addCategoryAxis("x", "Airport")
+							x.addOrderRule("Airport")
+
+							y = barChart.addMeasureAxis("y", "Delays (%)");
+							y.tickFormat = ",.2f";
+							var s = barChart.addSeries('Cause', dimple.plot.bar);
+							barChart.addLegend(60, 05, 510, 60, "center");
+
+
+
+							s.addEventHandler("click", function(e) {
+								filtered = dimple.filterData(causes, "Airport", e.xValue);
+								areaChart.data = filtered;
+								document.getElementById("airport").innerHTML = e.xValue + " - Delays over time.";
+								areaChart.draw(1000);
+							});
+
+							barChart.draw();
+
+							//Creating the area chart
+							data = by_year;
+							var areaChart = new dimple.chart(areaSvg, data);
+							areaChart.setBounds(60, 30, 510, 305);
+							var x = areaChart.addCategoryAxis("x", "Year");
+							x.addOrderRule("Year");
+							y = areaChart.addMeasureAxis("y", "Delays (%)");
+							y.tickFormat = ",.2f";
+							var j = areaChart.addSeries("Cause", dimple.plot.area);
+							areaChart.addLegend(60, 05, 510, 60, "right");
+							areaChart.draw();
+						})
 					})
 				})
 			};
-								
+
 		</script>
 	</head>
 	<body>
@@ -68,7 +72,7 @@
 			</div>
 			<div class="col-1-1">
 				<div class="p">
-					You may have a hard time traveling from <b>New York City</b> if it is not your lucky day.<br /> 
+					You may have a hard time traveling from <b>New York City</b> if it is not your lucky day.<br />
 					Data aquired by the United States Department of Transportation for the period June 2003 - February 2017, show that over one out of four flights is delayed across all NYC airports. More specifically:
 				</div>
 				<div class="p">
@@ -87,7 +91,7 @@
 				<div class="p">
 					The reason most of the times is the <b>National Aviation System (NAS)</b>. This means that most of the delays are due to a broad set of conditions, such as non-extreme weather conditions, airport operations, heavy traffic volume, and air traffic control. Other frequent reasons are <b>Aircraft Arriving Late</b> and <b>Air Carrier Delay</b>.  You may notice that this is the top reason for the delays in all major US airports.
 				</div>
-								
+
 			</div>
 			<div class="col-1-2">
 				<div class="col-1-1">
@@ -101,12 +105,12 @@
 				<div class="col-1-1">
 					<div id='bar'></div>
 				</div>
-				
+
 			</div>
 			<div class="col-1-2">
 				<div class="col-1-1">
 					<div class="chart_title" id="airport">
-						ATL - Delays over time
+						Total Delays Across Major US Airports
 					</div>
 				</div>
 				<div class="col-1-1">
